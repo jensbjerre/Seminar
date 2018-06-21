@@ -9,21 +9,19 @@ pageextension 123456700 "CSD Resource Card Ext" extends "Resource Card"
 
             }
         }
-        addlast("Personal Data")
+        addafter("Personal Data")
         {
             group("Room")
             {
+                Visible=ShowMaxField;
+                field("CSD Maximum Participants"; "CSD Maximum Participants")
+                {
 
+                }
             }
 
         }
-        addfirst(Room)
-        {
-            field("CSD Maximum Participants"; "CSD Maximum Participants")
-            {
 
-            }
-        }
     }
 
     actions
