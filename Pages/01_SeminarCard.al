@@ -12,6 +12,8 @@ page 123456701 "Seminar Card"
                 field("No."; "No.")
                 {
                     Caption = 'No.';
+                    AssistEdit=true;
+                    
                     trigger OnAssistEdit();
                     begin
                         if AssistEdit then

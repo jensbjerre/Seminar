@@ -16,6 +16,7 @@ page 123456700 "Seminar Setup"
                 field("Seminar Nos."; "Seminar Nos.")
                 {
                     Caption = 'Seminar Nos.';
+                
                 }
                 field("Seminar Registration Nos."; "Seminar Registration Nos.")
                 {
