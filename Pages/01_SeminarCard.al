@@ -1,4 +1,7 @@
 page 123456701 "Seminar Card"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 5 - Lab 2-4 & Lab 2-5
+
 {
     PageType = Card;
     SourceTable = Seminar;
@@ -11,9 +14,7 @@ page 123456701 "Seminar Card"
             {
                 field("No."; "No.")
                 {
-                    Caption = 'No.';
                     AssistEdit=true;
-                    
                     trigger OnAssistEdit();
                     begin
                         if AssistEdit then
@@ -22,46 +23,36 @@ page 123456701 "Seminar Card"
                 }
                 field(Name; Name)
                 {
-                    Caption = 'Name';
                 }
                 field("Search Name"; "Search Name")
                 {
-                    Caption = 'Search Name';
                 }
-                field("Seminar Duration"; "Seminar Duration")
+                field("Seminar Duration";"Seminar Duration")
                 {
-                    Caption = 'Seminar Duration';
                 }
-                field("Minimum participants"; "Minimum participants")
+                field("Minimum Participants"; "Minimum Participants")
                 {
-                    Caption = 'Minimum participants';
                 }
                 field("Maximum Participants"; "Maximum Participants")
                 {
-                    Caption = 'Maximum Participants';
                 }
                 field(Blocked; Blocked)
                 {
-                    Caption = 'Blocked';
                 }
                 field("Last Date Modified"; "Last Date Modified")
                 {
-                    Caption = 'Last Date Modified';
                 }
             }
             group(Invoicing)
             {
                 field("Gen. Prod. Posting Group"; "Gen. Prod. Posting Group")
                 {
-                    Caption = 'Gen. Prod. Posting Group';
                 }
                 field("VAT Prod. Posting Group"; "VAT Prod. Posting Group")
                 {
-                    Caption = 'VAT Prod. Posting Group';
                 }
                 field("Seminar Price"; "Seminar Price")
                 {
-                    Caption = 'Seminar Price';
                 }
             }
         }
@@ -69,13 +60,12 @@ page 123456701 "Seminar Card"
         {
             systempart("Links"; Links)
             {
-
             }
             systempart("Notes"; Notes)
             {
-
             }
         }
+
     }
 
     actions
@@ -84,11 +74,10 @@ page 123456701 "Seminar Card"
         {
             group("&Seminar")
             {
-                action("Co&mment")
+                action("Co&mments")
                 {
-                    //RunObject = page "Seminar Comment Sheet";
-                    //RunPageLink = "Table Name"= const(Seminar),
-                    // "No."=field("No.");
+                    RunObject=page "Seminar Comment Sheet";
+                    RunPageLink = "Table Name"=const(Seminar),"No."=field("No.");
                     Image = Comment;
                     Promoted = true;
                     PromotedIsBig = true;
@@ -97,6 +86,4 @@ page 123456701 "Seminar Card"
             }
         }
     }
-
-    
 }

@@ -1,8 +1,10 @@
 page 123456702 "Seminar List"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 5 - Lab 3-6
 {
+    Caption='Seminar List';
     PageType = List;
     SourceTable = Seminar;
-    Caption = 'Seminar List';
     Editable = false;
     CardPageId = 123456701;
     UsageCategory = Lists;
@@ -15,27 +17,21 @@ page 123456702 "Seminar List"
             {
                 field("No."; "No.")
                 {
-                    Caption = 'No.';
                 }
                 field(Name; Name)
                 {
-                    Caption = 'Name';
                 }
-                field("Seminar Duration"; "Seminar Duration")
+                field("Seminar Duration";"Seminar Duration")
                 {
-                    Caption = 'Seminar Duration';
                 }
                 field("Seminar Price"; "Seminar Price")
                 {
-                    Caption = 'Seminar Price';
                 }
-                field("Minimum participants"; "Minimum participants")
+                field("Minimum Participants"; "Minimum Participants")
                 {
-                    Caption = 'Minimum participants';
                 }
                 field("Maximum Participants"; "Maximum Participants")
                 {
-                    Caption = 'Maximum Participants';
                 }
             }
         }
@@ -43,24 +39,29 @@ page 123456702 "Seminar List"
         {
             systempart("Links"; Links)
             {
-
             }
             systempart("Notes"; Notes)
             {
-
             }
         }
+
     }
 
     actions
     {
-        area(processing)
+        area(Navigation)
         {
-            action(ActionName)
+            group("&Seminar")
             {
-                trigger OnAction();
-                begin
-                end;
+                action("Co&mments")
+                {
+                    RunObject=page "Seminar Comment Sheet";
+                    RunPageLink = "Table Name"=const(Seminar),"No."=field("No.");
+                    Image = Comment;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                }
             }
         }
     }
