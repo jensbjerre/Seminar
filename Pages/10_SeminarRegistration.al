@@ -3,11 +3,12 @@ page 123456710 "Seminar Registration"
     // CSD1.00 - 2018-01-01 - D. E. Veloper
     //   Chapter 6 - Lab 3-1
     //     - Created new page
+    //   Chapter 7 - Lab 5-8
+    //     - Added Post Action  
 
     Caption = 'Seminar Registration';
     PageType = Document;
     SourceTable = "Seminar Registration Header";
-    UsageCategory = tasks;
 
     layout
     {
@@ -61,11 +62,11 @@ page 123456710 "Seminar Registration"
             part(SeminarRegistrationLines; "Seminar Registration Subpage")
             {
                 Caption = 'Lines';
-                SubPageLink = "Document No." = Field ("No.");
+                SubPageLink = "Document No." = field ("No.");
             }
             group("Seminar Room")
             {
-                field("Room Resource Code"; "Room Resource Code")
+                field("Room Resource Code"; "Room Resource No.")
                 {
                 }
                 field("Room Name"; "Room Name")
@@ -114,6 +115,7 @@ page 123456710 "Seminar Registration"
                 Provider = SeminarRegistrationLines;
                 SubPageLink = "No." = field ("Bill-to Customer No.");
             }
+
             systempart("Links"; Links)
             {
             }
@@ -146,6 +148,33 @@ page 123456710 "Seminar Registration"
                     RunPageLink = "Document No." = Field ("No.");
                 }
             }
+        }
+        area(Processing)
+        {
+            action("&Post")
+            {
+                Caption = '&Post';
+                Image = PostDocument;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                ShortcutKey = F9;
+                RunObject = codeunit "Seminar-Post (Yes/No)";
+            }
+            action("&Print")
+            {
+                Caption = '&Print';
+                Image = Print;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                trigger OnAction();
+                var
+                    SeminarReportSelection : Record "Seminar Report Selections";
+                begin
+                    SeminarReportSelection.PrintReportSelection(SeminarReportSelection.Usage::Registration,Rec);
+                end;
+            }            
         }
     }
 }
